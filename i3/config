@@ -11,6 +11,8 @@
 
 set $mod Mod4
 set $alt Mod1
+set $mon1 HDMI-1
+set $mon2 eDP-1
 set $wallpaperDir ~/.wallpaper
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -103,14 +105,49 @@ bindsym $mod+7 workspace number 7;exec --no-startup-id feh  -F --bg-max --random
 bindsym $mod+8 workspace number 8;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
 bindsym $mod+9 workspace number 9;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
 bindsym $mod+0 workspace number 10;exec --no-startup-id feh -F  --bg-max --randomize --no-fehbg $wallpaperDir
+# Monitor 2
+bindsym $alt+1 workspace number 11;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+2 workspace number 12;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+3 workspace number 13;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+4 workspace number 14;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+5 workspace number 15;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+6 workspace number 16;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+7 workspace number 17;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+8 workspace number 18;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+9 workspace number 19;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+0 workspace number 20;exec --no-startup-id feh -F  --bg-max --randomize --no-fehbg $wallpaperDir
+
+# monitors
+workspace "1:" output $mon1
+workspace 2 output $mon1
+workspace "3:" output $mon1
+workspace 4 output $mon1
+workspace 5 output $mon1
+workspace 6 output $mon1
+workspace 7 output $mon1
+workspace 8 output $mon1
+workspace 9 output $mon1
+workspace "10:" output $mon1
+# Second monitor
+workspace 11 output $mon2
+workspace 12 output $mon2
+workspace 13 output $mon2
+workspace 14 output $mon2
+workspace 15 output $mon2
+workspace 16 output $mon2
+workspace 17 output $mon2
+workspace 18 output $mon2
+workspace "19:" output $mon2
+workspace 20 output $mon2
+
+assign [class="weechat"] "19:"
 
 # Standard workspaces
 exec i3-msg 'workspace 1:;exec termite'
 #exec i3-msg 'workspace 2:;exec firefox -P default'
 exec i3-msg 'workspace 3:;exec nautilus'
 exec i3-msg 'workspace 10:;exec primusrun firefox -P mail'
-#exec i3-msg 'workspace 9:;exec firefox -P saavn saavn.com'
-#exec i3-msg 'workspace 5:Firefox'
+exec --no-startup-id termite --class="weechat" -e "/bin/bash -c /usr/bin/weechat"
 #exec i3-msg 'workspace 6:Firefox'
 #exec i3-msg 'workspace 7:Firefox'
 #exec i3-msg 'workspace 8:Firefox'
@@ -129,6 +166,16 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $alt+Shift+1 move container to workspace number 11
+bindsym $alt+Shift+2 move container to workspace number 12
+bindsym $alt+Shift+3 move container to workspace number 13
+bindsym $alt+Shift+4 move container to workspace number 14
+bindsym $alt+Shift+5 move container to workspace number 15
+bindsym $alt+Shift+6 move container to workspace number 16
+bindsym $alt+Shift+7 move container to workspace number 17
+bindsym $alt+Shift+8 move container to workspace number 18
+bindsym $alt+Shift+9 move container to workspace number 19
+bindsym $alt+Shift+0 move container to workspace number 20
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,13 +238,14 @@ bindsym $mod+m focus floating; mode "move"
 exec --no-startup-id compton
 exec --no-startup-id /opt/i3batwarn.sh &
 exec --no-startup-id nm-applet
-exec --no-startup-id "/home/hritik/.config/i3/start-gnome-keyring.sh"
+exec --no-startup-id ~/.config/i3/start-gnome-keyring.sh"
 exec --no-startup-id "xset -b"
 exec --no-startup-id "clipit"
 exec --no-startup-id termite --class scratchpad_termite -e "/bin/zsh -o ignoreeof" -c "$HOME/.config/termite/scratchpad.conf"
 #exec_always --no-startup-id feh "/home/hritik/Downloads/Colemak_fingers.png"
-exec --no-startup-id termite --class scratchpad_weechat -e "/bin/bash -c /usr/bin/weechat"
-exec --no-startup-id tixati -starthiddenintray
+# moved to another screen
+#exec --no-startup-id termite --class scratchpad_weechat -e "/bin/bash -c /usr/bin/weechat"
+exec --no-startup-id transmission-gtk --minimized
 
 
 # Custom Shortcuts (Key bindings)
@@ -214,13 +262,15 @@ bindsym F12 exec ~/bin/switchkb.sh dvorak us
 bindsym XF86AudioStop exec ~/bin/i3/toggle.sh ffmpeg_screencast &>/tmp/screencast.log
 bindsym F10 exec ~/bin/i3/toggle.sh logkeys
 bindsym $mod+k "exec $HOME/bin/startvm Kali"
+bindsym F6 exec ~/bin/toggle monitor $mon2
 
 
 # Scratchpads
 # Position is reset after first move to scratchpad, so position after move
 for_window [class="scratchpad.*"] move scratchpad, move scratchpad
 for_window [class="scratchpad_termite"] move position 0 650, resize set 1920 430
-for_window [class="scratchpad_weechat"] move position 140 85, resize set 1678 858, border pixel 1
+# Moved to another monitor
+#for_window [class="scratchpad_weechat"] move position 140 85, resize set 1678 858, border pixel 1
 for_window [class="scratchpad.*"] move scratchpad
 bindsym $mod+minus [class="scratchpad_termite"] scratchpad show
 # Position is reset after first move to scratchpad, so position after move
