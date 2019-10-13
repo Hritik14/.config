@@ -45,7 +45,8 @@ bindsym $alt+F4 kill
 # start rofi (a program launcher)
 #Next time you see below line and are having no issue with launcher, delete it.
 #bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --term termite
-bindsym $alt+space exec --no-startup-id rofi -show drun -display-drun "App: " -show-icons -matching fuzzy -location 3
+#bindsym $alt+space exec --no-startup-id rofi -show drun -display-drun "App: " -show-icons -matching fuzzy -location 3
+bindsym $alt+space exec --no-startup-id  rofi -show run -display-run "App: " -show-icons -matching fuzzy -location 3
 bindsym Shift+$alt+space exec --no-startup-id rofi -show drun -display-drun "App (primusrun): " -show-icons -matching fuzzy -location 1 -run-command "primusrun {cmd}"
 
 bindsym $alt+Tab exec --no-startup-id rofi -show window -display-window "Window: "
