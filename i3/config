@@ -43,13 +43,11 @@ bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
 # start rofi (a program launcher)
-#Next time you see below line and are having no issue with launcher, delete it.
-#bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --term termite
-#bindsym $alt+space exec --no-startup-id rofi -show drun -display-drun "App: " -show-icons -matching fuzzy -location 3
-bindsym $alt+space exec --no-startup-id  rofi -show run -display-run "App: " -show-icons -matching fuzzy -location 3
+#bindsym $alt+space exec --no-startup-id  j4-dmenu-desktop --wrapper="i3 exec" --dmenu='rofi -dmenu -i -display-drun "App: " -show-icons -matching fuzzy -location 3'
+bindsym $alt+space exec --no-startup-id  j4-dmenu-desktop --wrapper="i3 exec" --dmenu='dmenu -l 10  -fn "Source\ Code\ Pro-20" -i'
 bindsym Shift+$alt+space exec --no-startup-id rofi -show drun -display-drun "App (primusrun): " -show-icons -matching fuzzy -location 1 -run-command "primusrun {cmd}"
 
-bindsym $alt+Tab exec --no-startup-id rofi -show window -display-window "Window: "
+bindsym $alt+grave exec --no-startup-id rofi -show window -display-window "Window: "
 
 # change focus
 bindsym $mod+Left focus left
@@ -117,6 +115,7 @@ bindsym $alt+7 workspace number 17;exec --no-startup-id feh  -F --bg-max --rando
 bindsym $alt+8 workspace number 18;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
 bindsym $alt+9 workspace number 19;exec --no-startup-id feh  -F --bg-max --randomize --no-fehbg $wallpaperDir
 bindsym $alt+0 workspace number 20;exec --no-startup-id feh -F  --bg-max --randomize --no-fehbg $wallpaperDir
+bindsym $alt+Tab workspace back_and_forth
 
 # monitors
 workspace "1:" output $mon1
@@ -215,8 +214,19 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+		id bar-bottom	
 		mode hide
-		status_command i3blocks -vvvv 2>/tmp/a
+		status_command i3blocks
+		hidden_state hide
+		modifier $Mod
+}
+
+bar {
+		id bar-top
+		mode hide
+		status_command i3blocks
+		position top
+		modifier Shift+$Mod
 }
 
 # Move floating windows
@@ -264,6 +274,7 @@ bindsym XF86AudioStop exec ~/bin/i3/toggle.sh ffmpeg_screencast &>/tmp/screencas
 bindsym F10 exec ~/bin/i3/toggle.sh logkeys
 bindsym $mod+k "exec $HOME/bin/startvm Kali"
 bindsym F6 exec ~/bin/toggle monitor $mon2
+bindsym $alt+u "exec ~/bin/clipbox"
 
 
 # Scratchpads
@@ -321,10 +332,11 @@ bindsym Shift+$mod+Print exec bash -c "maim -i $(xdotool getactivewindow) | xcli
 
 
 #i3-gaps: for "gaps" to work
-for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 5
 smart_gaps on
+exec border pixel 1
+smart_borders on
 
 # Floating windows
 for_window [class="floating"] floating enable
