@@ -221,14 +221,6 @@ bar {
 		modifier $Mod
 }
 
-bar {
-		id bar-top
-		mode hide
-		status_command i3blocks
-		position top
-		modifier Shift+$Mod
-}
-
 # Move floating windows
 mode "move" {
 	bindsym Up move up 20px
