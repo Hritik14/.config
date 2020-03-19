@@ -214,7 +214,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-		id bar-bottom	
+	id bar-bottom	
 		mode hide
 		status_command i3blocks
 		hidden_state hide
@@ -252,7 +252,7 @@ exec --no-startup-id transmission-gtk --minimized
 exec --no-startup-id /usr/bin/safeeyes 
 
 
-# Custom Shortcuts (Key bindings)
+# Custom Shortcuts (keybindings)
 bindsym Control+$alt+h exec ~/bin/suspend.sh hibernate
 bindsym $mod+l "exec ~/bin/lock.sh"
 bindsym $alt+e "exec nautilus"
@@ -262,13 +262,15 @@ bindsym $mod+x [urgent=latest] focus
 bindsym $mod+Shift+e mode "Exit"; exec "i3-nagbar -t warning -m 'Press Return to exit, S to shutdown, H to halt, R to reboot and ESC to abort.' -f 'pango:Cantarall:11'"
 bindsym $alt+s exec ~/bin/special_characters.sh
 bindsym $mod+z move scratchpad
-bindsym F12 exec ~/bin/switchkb.sh dvorak us
 bindsym XF86AudioStop exec ~/bin/i3/toggle.sh ffmpeg_screencast &>/tmp/screencast.log
-bindsym F10 exec ~/bin/i3/toggle.sh logkeys
 bindsym $mod+k "exec $HOME/bin/startvm Kali"
-bindsym F6 exec ~/bin/toggle monitor $mon2
 bindsym $alt+u "exec ~/bin/clipbox"
 bindsym Pause "exec safeeyes -t"
+   #Function keys
+	bindsym F3 sticky toggle
+	bindsym F6 exec ~/bin/toggle monitor $mon2
+	bindsym F10 exec ~/bin/i3/toggle.sh logkeys
+	bindsym F12 exec ~/bin/switchkb.sh dvorak us
 
 
 # Scratchpads
