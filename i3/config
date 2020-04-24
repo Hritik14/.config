@@ -44,7 +44,7 @@ bindsym $alt+F4 kill
 
 # start rofi (a program launcher)
 #bindsym $alt+space exec --no-startup-id  j4-dmenu-desktop --wrapper="i3 exec" --dmenu='rofi -dmenu -i -display-drun "App: " -show-icons -matching fuzzy -location 3'
-bindsym $alt+space exec --no-startup-id  j4-dmenu-desktop --wrapper="i3 exec" --usage-log="$HOME/.config/j4-dmenu-desktop.log" --dmenu='dmenu -l 10  -fn "Source\ Code\ Pro-20" -i'
+bindsym $alt+space exec --no-startup-id  j4-dmenu-desktop --wrapper="i3 exec" --usage-log="~/.cache/j4-dmenu-desktop.log" --dmenu='dmenu -l 10  -fn "Source\ Code\ Pro-20" -i'
 bindsym Shift+$alt+space exec --no-startup-id rofi -show drun -display-drun "App (primusrun): " -show-icons -matching fuzzy -location 1 -run-command "primusrun {cmd}"
 
 bindsym $alt+grave exec --no-startup-id rofi -show window -display-window "Window: "
@@ -146,7 +146,7 @@ assign [class="weechat"] "19:"
 exec i3-msg 'workspace 1:;exec termite'
 #exec i3-msg 'workspace 2:;exec firefox -P default'
 exec i3-msg 'workspace 3:;exec nautilus'
-exec i3-msg 'workspace 10:;exec primusrun firefox -P mail'
+exec i3-msg 'workspace 10:;exec firefox -P mail'
 exec --no-startup-id termite --class="weechat" -e "/bin/bash -c /usr/bin/weechat"
 #exec i3-msg 'workspace 6:Firefox'
 #exec i3-msg 'workspace 7:Firefox'
