@@ -252,10 +252,13 @@ bindsym Pause "exec safeeyes -t"
 	bindsym F10 exec ~/bin/i3/toggle.sh logkeys
 	bindsym F12 exec ~/bin/switchkb.sh dvorak us 
 # Dunst
-	bindsym Control+Return exec /usr/bin/dunstctl action 0
-	bindsym Control+Space exec /usr/bin/dunstctl close
-	bindsym Control+Shift+Space exec /usr/bin/dunstctl close_all
+	bindsym Control+1 exec /usr/bin/dunstctl action 0
+	bindsym Control+2 exec /usr/bin/dunstctl action 1
+	bindsym Control+3 exec /usr/bin/dunstctl action 2
+	bindsym Control+space exec /usr/bin/dunstctl close
+	bindsym Control+$mod+space exec /usr/bin/dunstctl close-all
 	bindsym Control+grave exec /usr/bin/dunstctl history-pop
+	bindsym $alt+minus exec /usr/bin/dunstctl set-paused toggle
 bindsym $mod+LControl [urgent=latest] focus
 
 
@@ -293,9 +296,9 @@ mode "Exit" {
 new_window pixel 1
 
 # pulse audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume `pacmd list-sinks|awk '{ if($1=="*"){print $NF}}'` +5%; exec pkill -rtmin+1 i3blocks #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume `pacmd list-sinks|awk '{ if($1=="*"){print $NF}}'`  -5%; exec  pkill -rtmin+1 i3blocks #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute `pacmd list-sinks|awk '{ if($1=="*"){print $NF}}'`  toggle; exec  pkill -rtmin+1 i3blocks  # mute/unmute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id  $HOME/bin/volume inc
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/bin/volume dec
+bindsym XF86AudioMute exec --no-startup-id $HOME/bin/volume toggle
 
 # sreen brightness controls
 bindsym XF86MonBrightnessUp exec /usr/bin/light -A 5; exec pkill -rtmin+2 i3blocks # increase screen brightness
@@ -327,6 +330,7 @@ for_window [class="floating"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="Firefox" title="Tor Browser$"] floating enable
 for_window [class="Maltego"] floating enable # Temporary fix
+for_window [class="SimpleScreenRecorder"] floating enable
 
 # window colors
 
